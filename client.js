@@ -6,13 +6,14 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('config.json').toString());
 
 co(function* () {
+	debugger;
 	var run = true;
-	var client = yield network.open({
+	var client = network.open({
 		port: config.port,
 		host: config.host
 	}, {
 		data: function(type, data) {
-			console.log('Server says', data);
+			console.log('Server says', type, data);
 		},
 		close: function() {
 			run = false;	
@@ -27,7 +28,7 @@ co(function* () {
 		while(run) {
 			var temperature = yield sensor.measure(sht1x.TEMPERATURE);
 			temperature = sht1x.convertToCelcius(temperature);
-			client.write('temperature', {
+			yield client.write('temperature', {
 				celcius: temperature
 			});
 			wait(1000);
