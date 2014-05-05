@@ -1,0 +1,23 @@
+{
+  "name": "hallutclient",
+  "version": "0.0.0",
+  "description": "",
+  "main": "client.js",
+  "dependencies": {
+    "sht1x": "~0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/considerate/hallutclient.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/considerate/hallutclient/issues"
+  },
+  "homepage": "https://github.com/considerate/hallutclient"
+}

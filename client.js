@@ -7,12 +7,12 @@ var config = JSON.parse(fs.readFileSync('config.json').toString());
 
 co(function* () {
 	var run = true;
-	var client = yield network.open({
+	var client = network.open({
 		port: config.port,
 		host: config.host
 	}, {
 		data: function(type, data) {
-			console.log('Server says', data);
+			console.log('Server says', type, data);
 		},
 		close: function() {
 			run = false;	
