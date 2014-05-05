@@ -6,6 +6,7 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('config.json').toString());
 
 co(function* () {
+	debugger;
 	var run = true;
 	var client = network.open({
 		port: config.port,
@@ -24,13 +25,24 @@ co(function* () {
 			dataPin: 15,
 			clockPin: 18
 		});
+
+		var interval = config.readInterval /* ms */;
 		while(run) {
+			var start = new Date();
+
 			var temperature = yield sensor.measure(sht1x.TEMPERATURE);
 			temperature = sht1x.convertToCelcius(temperature);
-			client.write('temperature', {
+			yield client.write('temperature', {
 				celcius: temperature
 			});
-			wait(1000);
+
+			var elapsedTime = new Date() - start;
+			if(elapsedTime < interval) {
+				// elapsedTime + sleepTime should be equal to interval
+				wait(interval - elapsedTime);
+			} else if(elapsedTime > interval) {
+				// TODO: Inform developer of too small interval value.
+			} // else, don't do anything special...
 		}
 		yield sensor.close();
 	});
