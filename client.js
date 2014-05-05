@@ -6,7 +6,6 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('config.json').toString());
 
 co(function* () {
-	debugger;
 	var run = true;
 	var client = network.open({
 		port: config.port,

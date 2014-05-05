@@ -4,7 +4,8 @@
   "description": "",
   "main": "client.js",
   "dependencies": {
-    "sht1x": "~0.0.1"
+    "sht1x": "~0.0.1",
+    "hallutnetwork": "https://github.com/considerate/hallutnetwork/archive/master.tar.gz"
   },
   "devDependencies": {},
   "scripts": {
