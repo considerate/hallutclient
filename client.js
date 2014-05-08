@@ -25,6 +25,11 @@ co(function* () {
 			clockPin: 18
 		});
 
+		process.on('exit', function(code) {
+			//Close all sensors on crash.
+			sensor.close();
+		});
+
 		var interval = config.readInterval /* ms */;
 		while(run) {
 			var start = new Date();
